@@ -1,0 +1,419 @@
+.evidence {
+  margin-top: 22px;
+}
+.disclosureLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.disclosureLabel small {
+  padding: 3px 7px;
+  border-radius: 999px;
+  color: var(--color-text);
+  background: var(--color-surface-strong);
+  font-size: 0.58rem;
+  letter-spacing: 0.04em;
+}
+.statusRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface-subtle);
+}
+.statusRow > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.statusRow figure {
+  width: 34px;
+  height: 34px;
+  min-height: 34px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+}
+.statusRow span span,
+.statusRow > div > span {
+  display: grid;
+  gap: 2px;
+}
+.statusRow strong {
+  font-size: 0.72rem;
+}
+.statusRow small {
+  color: var(--color-text-muted);
+  font-size: 0.63rem;
+  line-height: 1.35;
+}
+.aiStatus {
+  flex: 0 0 auto;
+  padding: 6px 9px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  font-size: 0.59rem;
+  text-transform: uppercase;
+}
+.block {
+  border-bottom: 1px solid var(--color-border);
+}
+.blockHead {
+  min-height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+}
+.blockHead h2,
+.provenanceHead h2 {
+  margin: 3px 0 0;
+  font:
+    500 1.25rem/1 var(--font-editorial),
+    Georgia,
+    serif;
+  letter-spacing: -0.025em;
+}
+.blockHead > svg {
+  color: var(--color-primary);
+}
+.kicker {
+  color: var(--color-text-muted);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.rankingBars {
+  border-top: 1px solid var(--color-border);
+}
+.rank {
+  min-height: 61px;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1.2fr) minmax(0, 2fr) minmax(3.5rem, auto);
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+.rankNumber {
+  color: var(--color-warm);
+  font:
+    italic 1.05rem var(--font-editorial),
+    Georgia,
+    serif;
+}
+.rank > span:nth-child(2) {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.rank > span:nth-child(2) small {
+  overflow: hidden;
+  color: var(--color-text-muted);
+  font-size: 0.62rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.rank > strong {
+  font:
+    500 1.08rem var(--font-editorial),
+    Georgia,
+    serif;
+  text-align: right;
+}
+.rank > strong small {
+  margin-left: 2px;
+  color: var(--color-text-soft);
+  font:
+    400 0.58rem var(--font-sans),
+    sans-serif;
+}
+.bar {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--color-surface-strong);
+}
+.bar i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent-strong));
+  transform-origin: left center;
+}
+.compareBars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  border-top: 1px solid var(--color-border);
+}
+.compareBars > section {
+  padding: 16px;
+  border-right: 1px solid var(--color-border);
+}
+.compareBars header {
+  display: grid;
+  gap: 3px;
+  margin-bottom: 15px;
+}
+.compareBars header strong {
+  color: var(--color-primary);
+  font:
+    600 1.35rem var(--font-editorial),
+    Georgia,
+    serif;
+}
+.compareBars header span {
+  color: var(--color-text-muted);
+  font-size: 0.64rem;
+}
+.componentLine {
+  margin: -6px 0 4px;
+  color: var(--color-text-muted);
+  font-size: 0.64rem;
+  line-height: 1.4;
+}
+.componentKicker {
+  margin: 0;
+  padding: 10px 16px 0;
+  color: var(--color-text-muted);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.compareBars section > div {
+  display: grid;
+  gap: 5px;
+  margin-top: 11px;
+}
+.compareBars section > div > span {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--color-text-muted);
+  font-size: 0.64rem;
+}
+.compareBars b {
+  color: var(--color-text);
+}
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  border-top: 1px solid var(--color-border);
+}
+.metric {
+  min-height: 94px;
+  display: grid;
+  align-content: center;
+  gap: 5px;
+  padding: 14px 16px;
+  border-right: 1px solid var(--color-border);
+}
+.metric span {
+  color: var(--color-text-muted);
+  font-size: 0.61rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.metric strong {
+  font:
+    500 1.16rem var(--font-editorial),
+    Georgia,
+    serif;
+  overflow-wrap: anywhere;
+}
+.metric small {
+  color: var(--color-text-soft);
+  font-size: 0.58rem;
+}
+.tableWrap {
+  max-width: 100%;
+  overflow-x: auto;
+}
+.tableWrap table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.66rem;
+}
+.tableWrap caption {
+  padding: 8px 16px;
+  color: var(--color-text-muted);
+  text-align: left;
+  font-size: 0.58rem;
+  text-transform: uppercase;
+}
+.tableWrap th,
+.tableWrap td {
+  padding: 9px 12px;
+  border-top: 1px solid var(--color-border);
+  text-align: left;
+  white-space: nowrap;
+}
+.tableWrap thead {
+  color: var(--color-text-muted);
+  background: var(--color-surface-subtle);
+}
+.tableWrap tbody th {
+  color: var(--color-primary);
+}
+.provenance {
+  padding: 18px 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+.provenanceHead {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px;
+}
+.provenanceHead > span {
+  color: var(--color-text-muted);
+  font-size: 0.59rem;
+  text-transform: uppercase;
+}
+.sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+.sources > a,
+.source {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-primary);
+  background: var(--color-surface-subtle);
+  text-decoration: none;
+}
+.sources > a:hover {
+  border-color: var(--color-primary);
+}
+.sources > a > span,
+.source > span {
+  display: grid;
+  gap: 2px;
+}
+.sources strong {
+  font-size: 0.66rem;
+}
+.sources small {
+  color: var(--color-text-muted);
+  font-size: 0.56rem;
+}
+.noSources {
+  margin: 12px 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.68rem;
+}
+.assumptions {
+  padding: 16px;
+  color: var(--color-text-muted);
+  background: var(--color-warning-soft);
+  font-size: 0.66rem;
+  line-height: 1.5;
+}
+.assumptions strong {
+  color: var(--color-warning);
+}
+.assumptions ul {
+  margin: 7px 0 0;
+  padding-left: 18px;
+}
+.assumptions li + li {
+  margin-top: 4px;
+}
+.unsupported {
+  padding: 16px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-warning);
+  background: var(--color-warning-soft);
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+.identityMeta {
+  color: var(--color-text-muted);
+  font-size: 0.62rem;
+}
+.liveGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  border-top: 1px solid var(--color-border);
+}
+.liveCard {
+  padding: 14px 16px;
+  border-right: 1px solid var(--color-border);
+}
+.liveCard header {
+  display: grid;
+  gap: 3px;
+  margin-bottom: 10px;
+}
+.liveCard header small {
+  color: var(--color-text-muted);
+  font-size: 0.58rem;
+}
+.liveCard ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.liveCard li {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 5px 0;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: 0.62rem;
+}
+.liveOk,
+.liveOff {
+  text-align: right;
+  max-width: 60%;
+}
+.liveOk {
+  color: var(--color-primary);
+}
+.liveOff {
+  color: var(--color-warning);
+}
+@media (max-width: 620px) {
+  .statusRow {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .aiStatus {
+    align-self: flex-start;
+  }
+  .rank {
+    grid-template-columns: 26px 1fr 52px;
+  }
+  .rank .bar {
+    grid-column: 2 / -1;
+    grid-row: 2;
+  }
+  .compareBars {
+    grid-template-columns: 1fr;
+  }
+  .compareBars > section {
+    border-right: 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .provenanceHead {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

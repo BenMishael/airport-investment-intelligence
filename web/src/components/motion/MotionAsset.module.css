@@ -1,0 +1,19 @@
+.asset {
+  position: relative;
+  min-height: 120px;
+  margin: 0;
+  overflow: hidden;
+}
+.poster {
+  object-fit: cover;
+  transition: opacity var(--duration-component) ease;
+}
+.poster.hidden {
+  opacity: 0;
+}
+.animation {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}

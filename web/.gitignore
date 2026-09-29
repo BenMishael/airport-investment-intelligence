@@ -1,0 +1,11 @@
+node_modules/
+.next/
+.next-playwright/
+out/
+.env*
+!.env.example
+*.tsbuildinfo
+__pycache__/
+*.py[cod]
+playwright-report/
+test-results/

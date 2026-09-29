@@ -1,0 +1,100 @@
+.root {
+  max-width: 820px;
+  margin: 9px 0 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  font-size: 0.94rem;
+  line-height: 1.68;
+}
+.root > :first-child {
+  margin-top: 0;
+}
+.root > :last-child {
+  margin-bottom: 0;
+}
+.root h1,
+.root h2,
+.root h3,
+.root h4 {
+  margin: 1.15em 0 0.4em;
+  color: var(--color-text);
+  font-family: var(--font-editorial), Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+}
+.root h1 {
+  font-size: 1.35rem;
+}
+.root h2 {
+  font-size: 1.12rem;
+}
+.root h3,
+.root h4 {
+  font-size: 1rem;
+}
+.root p {
+  margin: 0.55em 0;
+}
+.root ul,
+.root ol {
+  margin: 0.45em 0 0.7em;
+  padding-left: 1.2em;
+}
+.root li {
+  margin: 0.28em 0;
+}
+.root li > p {
+  margin: 0.15em 0;
+}
+.root strong {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+.root em {
+  color: var(--color-text-muted);
+}
+.root a {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-underline-offset: 3px;
+}
+.root a:hover {
+  color: var(--color-primary-hover);
+}
+.root table {
+  width: 100%;
+  margin: 0.7em 0;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+.root th,
+.root td {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+}
+.root th {
+  color: var(--color-text-muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.root blockquote {
+  margin: 0.7em 0;
+  padding: 0.2em 0 0.2em 12px;
+  border-left: 3px solid var(--color-accent);
+  color: var(--color-text-muted);
+}
+.root hr {
+  margin: 1em 0;
+  border: 0;
+  border-top: 1px solid var(--color-border);
+}
+.root code {
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  background: var(--color-surface-subtle);
+  font-size: 0.86em;
+}

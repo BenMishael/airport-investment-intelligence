@@ -1,0 +1,65 @@
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgb(8 15 12 / 62%);
+  backdrop-filter: blur(5px);
+}
+.dialog {
+  width: min(100%, 430px);
+  padding: 28px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
+}
+.dialog h2 {
+  margin: 10px 0 8px;
+  font:
+    500 2rem/1.05 var(--font-editorial),
+    Georgia,
+    serif;
+  letter-spacing: -0.035em;
+}
+.dialog > p:not(:global(.eyebrow)) {
+  margin: 0;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 26px;
+}
+.actions button {
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface-subtle);
+  font-weight: 600;
+  transition:
+    background var(--duration-fast),
+    border-color var(--duration-fast),
+    transform var(--duration-instant);
+}
+.actions button:hover {
+  border-color: var(--color-border-strong);
+  background: var(--color-surface);
+}
+.actions button:active {
+  transform: scale(0.98);
+}
+.actions .danger {
+  color: white;
+  border-color: var(--color-danger);
+  background: var(--color-danger);
+}
+.actions .danger:hover {
+  border-color: var(--color-danger);
+  background: color-mix(in srgb, var(--color-danger) 88%, black);
+}

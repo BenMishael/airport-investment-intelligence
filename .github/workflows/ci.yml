@@ -1,0 +1,107 @@
+name: CI
+on:
+  push:
+    paths:
+      - "api/**"
+      - "web/**"
+      - ".github/workflows/ci.yml"
+      - "compose.yaml"
+      - "render.yaml"
+  pull_request:
+    paths:
+      - "api/**"
+      - "web/**"
+      - ".github/workflows/ci.yml"
+      - "compose.yaml"
+      - "render.yaml"
+permissions:
+  contents: read
+jobs:
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  api:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: airport
+          POSTGRES_PASSWORD: airport_test
+          POSTGRES_DB: airport_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U airport -d airport_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+          working-directory: api
+      - run: uv sync --all-extras --frozen
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run mypy app
+      - run: uv run pytest --cov=app --cov-report=term-missing
+      - name: Verify PostgreSQL migrations and repositories
+        env:
+          DATABASE_URL: postgresql://airport:airport_test@localhost:5432/airport_test
+          INTEGRATION_DATABASE_URL: postgresql://airport:airport_test@localhost:5432/airport_test
+          ENVIRONMENT: test
+          AUTH_REQUIRED: "false"
+        run: |
+          uv run alembic upgrade head
+          uv run alembic check
+          uv run pytest tests/test_ingestion.py tests/test_repositories.py
+      - run: uv run pip-audit
+  web:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: web/.nvmrc
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run assets:validate
+      - run: npm run format:check
+      - run: npm run build
+      - run: npm audit --audit-level=high
+  visual:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: web/.nvmrc
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-captures
+          path: web/test-results/

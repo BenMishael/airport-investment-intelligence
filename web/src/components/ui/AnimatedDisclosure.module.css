@@ -1,0 +1,35 @@
+.root {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: clip;
+  background: var(--color-surface);
+}
+.trigger {
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 16px;
+  border: 0;
+  color: var(--color-primary);
+  background: transparent;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-align: left;
+  text-transform: uppercase;
+  transition:
+    color var(--duration-fast) ease,
+    background var(--duration-fast) ease;
+}
+.trigger:hover {
+  background: var(--color-surface-subtle);
+}
+.content {
+  overflow: hidden;
+}
+.content > div {
+  border-top: 1px solid var(--color-border);
+}

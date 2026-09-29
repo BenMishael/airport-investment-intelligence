@@ -1,0 +1,5 @@
+id,ident,type,name,latitude_deg,longitude_deg,continent,iso_country,iso_region,municipality,scheduled_service,icao_code,iata_code
+1,KBOS,large_airport,Boston Logan International,42.36,-71.02,NA,US,US-MA,Boston,yes,KBOS,BOS
+2,EGLL,large_airport,London Heathrow Airport,51.47,-0.46,EU,GB,GB-ENG,London,yes,EGLL,LHR
+3,KFOO,small_airport,Foo Field,44.8,-68.8,NA,US,US-ME,Foo,no,KFOO,ZZZ
+4,LFPG,large_airport,Charles de Gaulle,49.01,2.55,EU,FR,FR-IDF,Paris,yes,LFPG,CDG

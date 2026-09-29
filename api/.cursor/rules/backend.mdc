@@ -1,0 +1,6 @@
+---
+description: Airport Intelligence backend conventions
+alwaysApply: true
+---
+
+Keep HTTP routes thin and typed. Put persistence behind repositories and external I/O behind providers with timeouts and explicit failure results. Preserve deterministic scores and API fields. Never log or commit secrets, OTPs, tokens, or real allowlist addresses. Schema changes require Alembic migrations and tests.

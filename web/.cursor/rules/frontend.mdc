@@ -1,0 +1,6 @@
+---
+description: Airport Intelligence frontend conventions
+alwaysApply: true
+---
+
+Use strict TypeScript and feature modules. All API traffic goes through the authenticated client. Keep Supabase service-role and every server credential out of frontend variables. Preserve generic OTP feedback, accessible states, source attribution, and plain React rendering for generated content.

@@ -1,0 +1,50 @@
+{
+  "name": "airport-investment-intelligence-web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "skills:ui-ux:codex": "uipro init --ai codex --offline --force",
+    "skills:ui-ux:claude": "uipro init --ai claude --offline --force",
+    "skills:ui-ux:cursor": "uipro init --ai cursor --offline --force",
+    "skills:ui-ux:sync": "npm run skills:ui-ux:codex && npm run skills:ui-ux:claude && npm run skills:ui-ux:cursor",
+    "assets:validate": "node scripts/validate-assets.mjs",
+    "assets:validate:strict": "node scripts/validate-assets.mjs --strict",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "@fontsource-variable/ibm-plex-sans": "5.3.0",
+    "@fontsource-variable/newsreader": "5.3.0",
+    "@phosphor-icons/react": "2.1.10",
+    "@supabase/supabase-js": "^2.57.4",
+    "lottie-react": "3.1.2",
+    "motion": "13.4.3",
+    "next": "^16.3.6",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@testing-library/jest-dom": "^6.8.0",
+    "@testing-library/react": "^16.3.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.36.0",
+    "eslint-config-next": "^16.3.6",
+    "jsdom": "^27.0.0",
+    "prettier": "^3.6.2",
+    "typescript": "^5.0.0",
+    "ui-ux-pro-max-cli": "2.15.0",
+    "vitest": "^5.0.2"
+  }
+}
