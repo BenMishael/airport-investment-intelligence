@@ -362,10 +362,12 @@ function LiveContext({ payload }: { payload: Record<string, unknown> }) {
                   Weather <span className={weather.available ? styles.liveOk : styles.liveOff}>{weather.summary}</span>
                 </li>
                 <li>
-                  NAS operations <span className={operations.available ? styles.liveOk : styles.liveOff}>{operations.summary}</span>
+                  NAS operations{" "}
+                  <span className={operations.available ? styles.liveOk : styles.liveOff}>{operations.summary}</span>
                 </li>
                 <li>
-                  Facility <span className={facility.available ? styles.liveOk : styles.liveOff}>{facility.summary}</span>
+                  Facility{" "}
+                  <span className={facility.available ? styles.liveOk : styles.liveOff}>{facility.summary}</span>
                 </li>
                 <li>
                   Census <span className={census.available ? styles.liveOk : styles.liveOff}>{census.summary}</span>
@@ -405,15 +407,8 @@ export function Evidence({ response }: { response: ChatResponse }) {
   const recognized =
     ranking.length > 0 || compared.length > 0 || proxy || metricBlock || longHaul || Boolean(liveContext);
   const aiLabel =
-    typeof response.ai_status === "string" && response.ai_status
-      ? formatAiStatus(response.ai_status)
-      : "unavailable";
-  const providerLabel =
-    response.llm_provider === "groq"
-      ? "Groq"
-      : response.llm_provider === "gemini"
-        ? "Gemini"
-        : "";
+    typeof response.ai_status === "string" && response.ai_status ? formatAiStatus(response.ai_status) : "unavailable";
+  const providerLabel = response.llm_provider === "groq" ? "Groq" : response.llm_provider === "gemini" ? "Gemini" : "";
   const assumptions = Array.isArray(response.assumptions)
     ? response.assumptions.filter((item): item is string => typeof item === "string")
     : [];

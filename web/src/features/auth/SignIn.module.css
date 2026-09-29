@@ -280,7 +280,9 @@
   background: transparent;
   font-size: 0.78rem;
   font-weight: 600;
-  transition: color var(--duration-fast), text-decoration-color var(--duration-fast);
+  transition:
+    color var(--duration-fast),
+    text-decoration-color var(--duration-fast);
 }
 .recovery button:hover:not(:disabled) {
   text-decoration: underline;

@@ -29,7 +29,9 @@ function isOperationalAuthError(error: unknown): boolean {
   if (/AuthRetryableFetchError|Failed to fetch|NetworkError|fetch failed|ERR_CONNECTION|abort/i.test(blob)) {
     return true;
   }
-  return status === 429 || status >= 500 || code.includes("rate_limit") || /rate limit|over_email|html|internal/i.test(blob);
+  return (
+    status === 429 || status >= 500 || code.includes("rate_limit") || /rate limit|over_email|html|internal/i.test(blob)
+  );
 }
 
 export function SignIn({ configured, notice = "" }: { configured: boolean; notice?: string }) {

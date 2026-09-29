@@ -31,7 +31,10 @@ export function normalizeMemo(text: string): string {
     const escaped = title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     out = out.replace(new RegExp(`^(?:## )?${escaped}\\s*[:;]?\\s*`, "gm"), `## ${title}\n\n`);
   }
-  return out.replace(/^;\s+/gm, "").replace(/\n{3,}/g, "\n\n").trim();
+  return out
+    .replace(/^;\s+/gm, "")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
 }
 
 export function MarkdownAnswer({ markdown }: Props) {

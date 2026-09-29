@@ -18,9 +18,11 @@ function generateOtp() {
 }
 
 async function hideReviewChrome(page) {
-  await page.addStyleTag({
-    content: 'button[aria-label="Open Next.js Dev Tools"], nextjs-portal { display: none !important; }',
-  }).catch(() => undefined);
+  await page
+    .addStyleTag({
+      content: 'button[aria-label="Open Next.js Dev Tools"], nextjs-portal { display: none !important; }',
+    })
+    .catch(() => undefined);
   await page.locator("header span").evaluateAll((nodes) =>
     nodes.forEach((node) => {
       if ((node.textContent || "").includes("@")) {

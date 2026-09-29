@@ -178,7 +178,9 @@ describe("interface primitives", () => {
         }}
       />,
     );
-    expect(screen.getByText(/Screen 64.2\/100 — growth 50.1 · delay 80.2 · cancel 40.0 · activity 90.0/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Screen 64.2\/100 — growth 50.1 · delay 80.2 · cancel 40.0 · activity 90.0/),
+    ).toBeInTheDocument();
     expect(screen.getByRole("img", { name: "LAX delayed departures: 27" })).toBeInTheDocument();
   });
 
@@ -352,8 +354,7 @@ describe("interface primitives", () => {
   });
 
   it("exposes the full saved analysis question for hover", async () => {
-    const title =
-      "Which New England airports are the strongest candidates for a terminal expansion this decade?";
+    const title = "Which New England airports are the strongest candidates for a terminal expansion this decade?";
     vi.mocked(apiFetch).mockImplementation(async (path: string) => {
       if (path === "/conversations") {
         return {

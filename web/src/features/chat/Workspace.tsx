@@ -141,9 +141,7 @@ export function Workspace({
     if (!scroller || loading) return;
     const fromHistory = restoreFromHistoryRef.current;
     restoreFromHistoryRef.current = false;
-    const target = fromHistory
-      ? scroller.querySelector("article")
-      : scroller.querySelector("article:last-of-type");
+    const target = fromHistory ? scroller.querySelector("article") : scroller.querySelector("article:last-of-type");
     target?.scrollIntoView({ block: "start", inline: "nearest", behavior: reduced ? "auto" : "smooth" });
   }, [messages, loading, reduced]);
   useEffect(() => {
@@ -419,194 +417,207 @@ export function Workspace({
       <div className={styles.mainColumn}>
         {intro ? <div className={styles.introSlot}>{intro}</div> : null}
         <section className={styles.workspace} aria-label="Airport analysis conversation">
-        {messages.length === 0 && !loading ? (
-          <m.div className={styles.starter} initial={{ opacity: 0, y: reduced ? 0 : 8 }} animate={{ opacity: 1, y: 0 }}>
-            <div className={styles.starterHead}>
-              <div>
-                <span className="eyebrow">Start an analysis</span>
-                <h2>Questions built for this evidence set</h2>
-              </div>
-              <ChatCircleDots size={28} />
-            </div>
-            <div className={styles.promptGrid}>
-              {prompts.map((prompt, index) => (
-                <m.button
-                  type="button"
-                  className={`${index > 1 && !showAllPrompts ? styles.secondaryPrompt : ""}`}
-                  key={prompt.text}
-                  onClick={() => void ask(prompt.text)}
-                  initial={{ opacity: 0, y: reduced ? 0 : 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: reduced ? 0 : index * 0.04 }}
-                  whileTap={{ scale: 0.99 }}
-                >
-                  <span className={styles.promptNumber}>0{index + 1}</span>
-                  <span>
-                    <small>{prompt.category}</small>
-                    {prompt.text}
-                  </span>
-                  <ArrowRight size={20} />
-                </m.button>
-              ))}
-            </div>
-            <button
-              type="button"
-              className={styles.morePrompts}
-              aria-expanded={showAllPrompts}
-              onClick={() => setShowAllPrompts((value) => !value)}
+          {messages.length === 0 && !loading ? (
+            <m.div
+              className={styles.starter}
+              initial={{ opacity: 0, y: reduced ? 0 : 8 }}
+              animate={{ opacity: 1, y: 0 }}
             >
-              {showAllPrompts ? "Show fewer questions" : "Show two more questions"}
-            </button>
-          </m.div>
-        ) : (
-          <div ref={conversationRef} className={styles.conversation} aria-live="polite">
-            <AnimatePresence initial={false}>
-              {messages.map((message, index) => (
-                <m.article
-                  className={`${styles.message} ${message.role === "user" ? styles.user : styles.assistant}`}
-                  key={`${message.role}-${index}`}
-                  initial={reduced ? { opacity: 0 } : { opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                >
-                  <span className={styles.avatar}>{message.role === "user" ? "YOU" : "AI"}</span>
-                  <div className={styles.messageBody}>
-                    <span className={styles.messageLabel}>
-                      {message.role === "user" ? "Your question" : "Evidence-led answer"}
+              <div className={styles.starterHead}>
+                <div>
+                  <span className="eyebrow">Start an analysis</span>
+                  <h2>Questions built for this evidence set</h2>
+                </div>
+                <ChatCircleDots size={28} />
+              </div>
+              <div className={styles.promptGrid}>
+                {prompts.map((prompt, index) => (
+                  <m.button
+                    type="button"
+                    className={`${index > 1 && !showAllPrompts ? styles.secondaryPrompt : ""}`}
+                    key={prompt.text}
+                    onClick={() => void ask(prompt.text)}
+                    initial={{ opacity: 0, y: reduced ? 0 : 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: reduced ? 0 : index * 0.04 }}
+                    whileTap={{ scale: 0.99 }}
+                  >
+                    <span className={styles.promptNumber}>0{index + 1}</span>
+                    <span>
+                      <small>{prompt.category}</small>
+                      {prompt.text}
                     </span>
-                    {message.role === "user" ? <p>{message.content}</p> : <MarkdownAnswer markdown={message.content} />}
-                    {message.response && <Evidence response={message.response} />}
-                  </div>
-                </m.article>
-              ))}
-            </AnimatePresence>
-            {loading && (
-              <m.article
-                className={`${styles.message} ${styles.assistant}`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                    <ArrowRight size={20} />
+                  </m.button>
+                ))}
+              </div>
+              <button
+                type="button"
+                className={styles.morePrompts}
+                aria-expanded={showAllPrompts}
+                onClick={() => setShowAllPrompts((value) => !value)}
               >
-                <span className={styles.avatar}>AI</span>
-                <div className={styles.loadingState}>
-                  <MotionAsset
-                    src="/assets/motion/evidence-scan.json"
-                    posterSrc="/assets/posters/evidence-scan-poster.svg"
-                    alt="Evidence sources being analyzed"
-                  />
-                  <div>
-                    <strong>Checking the evidence</strong>
-                    <span>Retrieving deterministic metrics and validating source context…</span>
-                    <div className={styles.skeleton}>
-                      <i />
-                      <i />
-                      <i />
+                {showAllPrompts ? "Show fewer questions" : "Show two more questions"}
+              </button>
+            </m.div>
+          ) : (
+            <div ref={conversationRef} className={styles.conversation} aria-live="polite">
+              <AnimatePresence initial={false}>
+                {messages.map((message, index) => (
+                  <m.article
+                    className={`${styles.message} ${message.role === "user" ? styles.user : styles.assistant}`}
+                    key={`${message.role}-${index}`}
+                    initial={reduced ? { opacity: 0 } : { opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                  >
+                    <span className={styles.avatar}>{message.role === "user" ? "YOU" : "AI"}</span>
+                    <div className={styles.messageBody}>
+                      <span className={styles.messageLabel}>
+                        {message.role === "user" ? "Your question" : "Evidence-led answer"}
+                      </span>
+                      {message.role === "user" ? (
+                        <p>{message.content}</p>
+                      ) : (
+                        <MarkdownAnswer markdown={message.content} />
+                      )}
+                      {message.response && <Evidence response={message.response} />}
+                    </div>
+                  </m.article>
+                ))}
+              </AnimatePresence>
+              {loading && (
+                <m.article
+                  className={`${styles.message} ${styles.assistant}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                >
+                  <span className={styles.avatar}>AI</span>
+                  <div className={styles.loadingState}>
+                    <MotionAsset
+                      src="/assets/motion/evidence-scan.json"
+                      posterSrc="/assets/posters/evidence-scan-poster.svg"
+                      alt="Evidence sources being analyzed"
+                    />
+                    <div>
+                      <strong>Checking the evidence</strong>
+                      <span>Retrieving deterministic metrics and validating source context…</span>
+                      <div className={styles.skeleton}>
+                        <i />
+                        <i />
+                        <i />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </m.article>
-            )}
-          </div>
-        )}
-        {accessDenied && !error && (
-          <div className={styles.error} role="alert">
-            <WarningCircle size={21} />
-            <div>
-              <strong>Access removed</strong>
-              <span>This account is not authorized. Access has been removed.</span>
+                </m.article>
+              )}
             </div>
-          </div>
-        )}
-        <AnimatePresence>
-          {error && (
-            <m.div
-              className={styles.error}
-              role="alert"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
+          )}
+          {accessDenied && !error && (
+            <div className={styles.error} role="alert">
               <WarningCircle size={21} />
               <div>
-                <strong>Analysis unavailable</strong>
-                <span>{error}</span>
+                <strong>Access removed</strong>
+                <span>This account is not authorized. Access has been removed.</span>
               </div>
-              {lastQuestion && (
-                <button type="button" disabled={loading} onClick={() => void ask(lastQuestion, true)}>
-                  Retry
-                </button>
-              )}
-            </m.div>
+            </div>
           )}
-        </AnimatePresence>
-        <form
-          ref={formRef}
-          onSubmit={submit}
-          className={`${styles.composer} ${messages.length === 0 ? styles.composerIdle : ""}`}
-        >
-          <label htmlFor="question">Ask about an airport, region, route mix, or operational pressure</label>
-          <div>
-            <textarea
-              id="question"
-              value={input}
-              onChange={(event) => {
-                if (listening) stopDictation();
-                setInput(event.target.value);
-              }}
-              onKeyDown={(event) => {
-                if (event.key === "Enter" && !event.shiftKey) {
-                  event.preventDefault();
-                  formRef.current?.requestSubmit();
-                }
-              }}
-              rows={2}
-              maxLength={QUESTION_MAX_LENGTH}
-              placeholder="Compare airports, test a hypothesis, or ask a follow-up…"
-              disabled={loading}
-            />
-            <button
-              type="button"
-              className={styles.micButton}
-              aria-label="Dictate question"
-              aria-pressed={listening}
-              aria-busy={dictationRequesting}
-              disabled={loading || !dictationSupported || dictationRequesting}
-              onClick={() => {
-                if (listening) {
-                  stopDictation();
-                  return;
-                }
-                dictationBaseRef.current = input.trim();
-                void startDictation();
-              }}
-            >
-              <Microphone size={21} weight={listening ? "fill" : "regular"} />
-            </button>
-            <button type="submit" className={styles.sendButton} disabled={loading || !input.trim()} aria-label="Send question">
-              <PaperPlaneTilt size={21} weight="fill" />
-            </button>
-          </div>
-          <div className={styles.composerMeta}>
-            <LlmProviderToggle value={llmProvider} onChange={setLlmProvider} />
-            <small role="status" aria-live="polite">
-              {listening
-                ? "Listening… speak now"
-                : dictationRequesting
-                  ? "Allow microphone access when the browser asks…"
-                  : dictationError === "unsupported"
-                    ? "Voice dictation is not available in this browser. Type your question instead."
-                    : dictationError === "denied"
-                      ? "Microphone access was denied. Allow the microphone for this site, then try again."
-                      : dictationError === "ready"
-                        ? "Microphone is allowed. Click the mic and speak."
-                        : dictationError === "network"
-                          ? "The browser speech service did not return text. Check your connection and try again."
-                          : dictationError === "empty"
-                            ? "No speech was captured. Click the mic, speak, then click it again to stop."
-                            : dictationError === "failed"
-                              ? "Could not start dictation. Type your question instead."
-                              : "Deterministic metrics · evidence-constrained AI explanation · no investment advice"}
-            </small>
-          </div>
-        </form>
+          <AnimatePresence>
+            {error && (
+              <m.div
+                className={styles.error}
+                role="alert"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <WarningCircle size={21} />
+                <div>
+                  <strong>Analysis unavailable</strong>
+                  <span>{error}</span>
+                </div>
+                {lastQuestion && (
+                  <button type="button" disabled={loading} onClick={() => void ask(lastQuestion, true)}>
+                    Retry
+                  </button>
+                )}
+              </m.div>
+            )}
+          </AnimatePresence>
+          <form
+            ref={formRef}
+            onSubmit={submit}
+            className={`${styles.composer} ${messages.length === 0 ? styles.composerIdle : ""}`}
+          >
+            <label htmlFor="question">Ask about an airport, region, route mix, or operational pressure</label>
+            <div>
+              <textarea
+                id="question"
+                value={input}
+                onChange={(event) => {
+                  if (listening) stopDictation();
+                  setInput(event.target.value);
+                }}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" && !event.shiftKey) {
+                    event.preventDefault();
+                    formRef.current?.requestSubmit();
+                  }
+                }}
+                rows={2}
+                maxLength={QUESTION_MAX_LENGTH}
+                placeholder="Compare airports, test a hypothesis, or ask a follow-up…"
+                disabled={loading}
+              />
+              <button
+                type="button"
+                className={styles.micButton}
+                aria-label="Dictate question"
+                aria-pressed={listening}
+                aria-busy={dictationRequesting}
+                disabled={loading || !dictationSupported || dictationRequesting}
+                onClick={() => {
+                  if (listening) {
+                    stopDictation();
+                    return;
+                  }
+                  dictationBaseRef.current = input.trim();
+                  void startDictation();
+                }}
+              >
+                <Microphone size={21} weight={listening ? "fill" : "regular"} />
+              </button>
+              <button
+                type="submit"
+                className={styles.sendButton}
+                disabled={loading || !input.trim()}
+                aria-label="Send question"
+              >
+                <PaperPlaneTilt size={21} weight="fill" />
+              </button>
+            </div>
+            <div className={styles.composerMeta}>
+              <LlmProviderToggle value={llmProvider} onChange={setLlmProvider} />
+              <small role="status" aria-live="polite">
+                {listening
+                  ? "Listening… speak now"
+                  : dictationRequesting
+                    ? "Allow microphone access when the browser asks…"
+                    : dictationError === "unsupported"
+                      ? "Voice dictation is not available in this browser. Type your question instead."
+                      : dictationError === "denied"
+                        ? "Microphone access was denied. Allow the microphone for this site, then try again."
+                        : dictationError === "ready"
+                          ? "Microphone is allowed. Click the mic and speak."
+                          : dictationError === "network"
+                            ? "The browser speech service did not return text. Check your connection and try again."
+                            : dictationError === "empty"
+                              ? "No speech was captured. Click the mic, speak, then click it again to stop."
+                              : dictationError === "failed"
+                                ? "Could not start dictation. Type your question instead."
+                                : "Deterministic metrics · evidence-constrained AI explanation · no investment advice"}
+              </small>
+            </div>
+          </form>
         </section>
       </div>
       <AnimatePresence>

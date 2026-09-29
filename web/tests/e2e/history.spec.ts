@@ -62,7 +62,10 @@ test("phone history opens the full thread instead of a collapsed pane", async ({
   await page.setViewportSize({ width: 375, height: 812 });
   await openWithHistory(page, [summary(0, "Saved airport comparison")]);
   await page.getByRole("button", { name: "Open analysis history" }).click();
-  await page.getByRole("dialog", { name: "Saved analyses" }).getByRole("button", { name: /^Saved airport comparison/ }).click();
+  await page
+    .getByRole("dialog", { name: "Saved analyses" })
+    .getByRole("button", { name: /^Saved airport comparison/ })
+    .click();
 
   await expect(page.getByText("Question for Saved airport comparison")).toBeVisible();
   const answer = page.getByText("Answer for Saved airport comparison", { exact: true });

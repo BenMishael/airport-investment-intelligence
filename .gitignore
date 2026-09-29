@@ -29,8 +29,6 @@ allowlist.txt
 
 .playwright-mcp/
 qa/
-QA_HANDOFF_FOR_CURSOR.md
-FDE Exam 2.pdf
 :memory:.ses
 *.ses
 
