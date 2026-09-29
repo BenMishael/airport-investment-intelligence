@@ -153,7 +153,8 @@ Demand pressure is delayed plus cancelled departures. It is **not** measured unm
 
 Check out the walkthrough: invitation-only sign-in, starter questions, and evidence-led rankings.
 
-https://github.com/BenMishael/airport-investment-intelligence/raw/main/media/demo.mp4
+https://github.com/user-attachments/assets/4450bc03-c3ab-4b90-9830-4a27def1d100
+
 
 ## Screenshots
 
